@@ -10,7 +10,9 @@ logging.basicConfig(level=logging.INFO,
 feed_url="https://www.orange.nsw.gov.au/category/das-on-exhibition/feed/"
 
 def parse_feed():
-    feed = scraperwiki.scrape(feed_url)
+    # Look mum, I'm an ipad!
+    user_agent="Mozilla/5.0 (iPad; CPU OS 12_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148"
+    feed = scraperwiki.scrape(feed_url, '', user_agent)
     page=BeautifulSoup(feed, "xml")
     items=page.findAll('item')
     for item in items:
