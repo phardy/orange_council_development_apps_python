@@ -1,5 +1,6 @@
 import logging
 import os
+import urllib
 os.environ["SCRAPERWIKI_DATABASE_NAME"] = "sqlite:///data.sqlite"
 import scraperwiki
 from bs4 import BeautifulSoup
@@ -7,13 +8,17 @@ from bs4 import BeautifulSoup
 logging.basicConfig(level=logging.INFO,
                     format='%(asctime)s %(levelname)s:%(message)s')
 
-feed_url="https://www.orange.nsw.gov.au/category/das-on-exhibition/feed/"
-
 def parse_feed():
+    feed_url="https://www.orange.nsw.gov.au/category/das-on-exhibition/feed/"
     # Look mum, I'm an ipad!
-    user_agent="Mozilla/5.0 (iPad; CPU OS 12_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148"
-    feed = scraperwiki.scrape(feed_url, '', user_agent)
-    page=BeautifulSoup(feed, "xml")
+    headers={
+        "User-Agent":"Mozilla/5.0 (iPad; CPU OS 12_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148"
+    }
+    #feed = scraperwiki.scrape(feed_url, '', user_agent)
+    req = urllib.request.Request(url=feed_url,
+                                 headers=headers)
+    fh = urllib.request.urlopen(req)
+    page=BeautifulSoup(fh, "xml")
     items=page.findAll('item')
     for item in items:
         title=item.title
