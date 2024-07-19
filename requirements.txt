@@ -1,4 +1,4 @@
-beautifulsoup4
-pandas
-numpy
-requests
+pandas==0.23.0
+numpy==1.14.3
+beautifulsoup4==4.6.0
+requests==2.18.4
