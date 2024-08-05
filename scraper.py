@@ -9,11 +9,9 @@ logging.basicConfig(level=logging.INFO,
                     format='%(asctime)s %(levelname)s:%(message)s')
 
 def parse_feed():
-#    feed_url="https://www.orange.nsw.gov.au/category/das-on-exhibition/feed/"
-    feed_url="https://www.orange.nsw.gov.au/category/das-on-exhibition/"
-    # Look mum, I'm an ipad!
+    feed_url="https://www.orange.nsw.gov.au/category/das-on-exhibition/feed/"
     headers={
-        "User-Agent":"Mozilla/5.0 (iPad; CPU OS 12_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148"
+        "User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:128.0) Gecko/20100101 Firefox/128.0"
     }
     #feed = scraperwiki.scrape(feed_url, '', user_agent)
     req = urllib.request.Request(url=feed_url,
